@@ -1,13 +1,26 @@
+import 'package:chess/components/piece.dart';
+import 'package:chess/value/colors.dart';
 import 'package:flutter/material.dart';
 
 class Square extends StatelessWidget {
   final bool iswhite;
-  const Square({required this.iswhite, super.key});
+  final ChessPiece? piece;
+  const Square({
+    required this.iswhite,
+    required this.piece,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: iswhite ? Colors.grey : const Color.fromARGB(255, 31, 31, 31),
+      color: iswhite ? backgroundcolor : foregroundcolor,
+      child: piece != null
+          ? Image.asset(
+              piece!.imagepath,
+              color: piece!.iswhite ? Colors.white : Colors.black,
+            )
+          : null,
     );
   }
 }
